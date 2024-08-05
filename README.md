@@ -4,7 +4,7 @@
 
 The **Screenshot App** is a simple Python application that allows users to take and save screenshots. This application features a user-friendly GUI built with `tkinter` and captures screenshots using the `pyscreenshot` library.
 
-![Screenshot of the App](../SSAP/assets/full demo.png)
+![Screenshot of the App](https://github.com/Mechiuw/Python.ScreenShot-DEMO/blob/master/assets/full%20demo.png)
 
 ## Features
 
