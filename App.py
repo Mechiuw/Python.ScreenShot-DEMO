@@ -11,6 +11,7 @@ root.geometry("300x150")
 def takeScreenShot():
     root.withdraw
     
+    # ss field dimesnsions range  
     bbox = None
     screenshot = ImageGrab.grab(bbox=bbox)
     
@@ -18,10 +19,13 @@ def takeScreenShot():
     
     # configure file path and format
     file_path = filedialog.asksaveasfile(defaultextension=".png",
-                                         filetypes=[("PNG files","*.png"),("All files","*.*")])
+                                         filetypes=[("PNG files","*.png"),
+                                                    ("JPEG files","*.jpeg"),
+                                                    ("All files","*.*")])
     
     if file_path:
-        screenshot.save(file_path, format="JPEG")
+        file_format = file_path.split('.')[-1].upper()
+        screenshot.save(file_path, format=file_format)
         messagebox.showinfo("Screenshot saved", f"Screenshot saved to {file_path}")
         
 
