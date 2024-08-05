@@ -11,7 +11,7 @@ root.geometry("300x150")
 def takeScreenShot():
     try:
         # app root
-        root.withdraw
+        root.withdraw()
         
         # ss field dimesnsions range  
         bbox = None
@@ -20,7 +20,7 @@ def takeScreenShot():
         root.deiconify()
         
         # configure file path and format
-        file_path = filedialog.asksaveasfile(defaultextension=".png",
+        file_path = filedialog.asksaveasfilename(defaultextension=".png",
                                             filetypes=[("PNG files","*.png"),
                                                         ("JPEG files","*.jpeg"),
                                                         ("All files","*.*")])
@@ -28,8 +28,10 @@ def takeScreenShot():
         # saved actions with conditions
         if file_path:
             file_format = file_path.split('.')[-1].upper()
+            if file_format not in ['PNG', 'JPEG']:
+                raise ValueError("Unsupported file format")
             screenshot.save(file_path, format=file_format)
-            messagebox.showinfo("Screenshot saved", f"Screenshot saved to {file_path}")
+            messagebox.showinfo("Screenshot Saved", f"Screenshot saved to {file_path}")
         else :
             retry = messagebox.askyesnocancel("Retry", "take another screenshot?")
             if retry :
@@ -41,7 +43,6 @@ def takeScreenShot():
             takeScreenShot()
         
 # tk as ui 
-screenshot_title = tk.Text(str.capitalize("screenshot"))
 screenshot_button = tk.Button(root,text="screenshot", command=takeScreenShot)
 screenshot_button.pack(expand=True)
 
