@@ -10,6 +10,7 @@ root.geometry("300x150")
 # take ss function
 def takeScreenShot():
     try:
+        # app root
         root.withdraw
         
         # ss field dimesnsions range  
@@ -24,6 +25,7 @@ def takeScreenShot():
                                                         ("JPEG files","*.jpeg"),
                                                         ("All files","*.*")])
         
+        # saved actions with conditions
         if file_path:
             file_format = file_path.split('.')[-1].upper()
             screenshot.save(file_path, format=file_format)
@@ -32,11 +34,14 @@ def takeScreenShot():
             retry = messagebox.askyesnocancel("Retry", "take another screenshot?")
             if retry :
                 takeScreenShot()
+                
+    # exceptions handling
     except Exception as e:
         if messagebox.askretrycancel("Error",f"An error occurred: {e}\nWould you like to try again?"):
             takeScreenShot()
         
-
+# tk as ui 
+screenshot_title = tk.Text(str.capitalize("screenshot"))
 screenshot_button = tk.Button(root,text="screenshot", command=takeScreenShot)
 screenshot_button.pack(expand=True)
 
